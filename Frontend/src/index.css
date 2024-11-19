@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* for uderline effect for active tab */
+.active hr {
+  @apply block;
+}
+
+/* to hide the scroll bar */
+::-webkit-scrollbar {
+  @apply hidden;
+}
