@@ -20,6 +20,8 @@ import arrow_icon from "./arrow_icon.svg";
 import header_img from "./header_img.png";
 import verified_icon from "./verified_icon.svg";
 import info_icon from "./info_icon.svg";
+import about_image from "./about_image.png";
+import contact_image from "./contact_image.png";
 
 import Dermatologist from "./Dermatologist.svg";
 import Gastroenterologist from "./Gastroenterologist.svg";
@@ -65,6 +67,8 @@ export const assets = {
   arrow_icon,
   verified_icon,
   info_icon,
+  about_image,
+  contact_image,
   header_img,
   General_physician,
   Gynecologist,
