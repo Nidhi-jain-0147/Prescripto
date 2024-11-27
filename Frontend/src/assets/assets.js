@@ -18,6 +18,9 @@ import dropdown_icon from "./dropdown_icon.svg";
 import group_profiles from "./group_profiles.png";
 import arrow_icon from "./arrow_icon.svg";
 import header_img from "./header_img.png";
+import verified_icon from "./verified_icon.svg";
+import info_icon from "./info_icon.svg";
+
 import Dermatologist from "./Dermatologist.svg";
 import Gastroenterologist from "./Gastroenterologist.svg";
 import General_physician from "./General_physician.svg";
@@ -60,6 +63,8 @@ export const assets = {
   earning_icon,
   group_profiles,
   arrow_icon,
+  verified_icon,
+  info_icon,
   header_img,
   General_physician,
   Gynecologist,
