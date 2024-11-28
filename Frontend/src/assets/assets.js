@@ -22,6 +22,8 @@ import verified_icon from "./verified_icon.svg";
 import info_icon from "./info_icon.svg";
 import about_image from "./about_image.png";
 import contact_image from "./contact_image.png";
+import menu_icon from "./menu_icon.svg";
+import cross_icon from "./cross_icon.png";
 
 import Dermatologist from "./Dermatologist.svg";
 import Gastroenterologist from "./Gastroenterologist.svg";
@@ -49,11 +51,13 @@ export const assets = {
   logo,
   profile_pic,
   dropdown_icon,
+  cross_icon,
   add_icon,
   admin_logo,
   appointment_icon,
   cancel_icon,
   doctor_icon,
+  menu_icon,
   upload_area,
   home_icon,
   patients_icon,
