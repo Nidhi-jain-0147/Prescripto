@@ -1,0 +1,3 @@
+const doctorRoute = () => {};
+
+export default doctorRoute;
