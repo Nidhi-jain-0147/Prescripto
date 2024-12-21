@@ -52,6 +52,18 @@ const addDoctor = async (req, res) => {
       });
     }
 
+    //check user existed
+    const existedUser = await doctorModel.findOne({
+      $or: [{ name }, { email }],
+    });
+
+    if (existedUser) {
+      return res.status(409).json({
+        success: false,
+        message: "Docter with email already exists",
+      });
+    }
+
     // hashing doctor password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);

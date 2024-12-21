@@ -39,7 +39,7 @@ const Login = () => {
             className="border border-zinc-300 rounded w-full p-2 mt-1"
             type="email"
             onChange={(e) => setEmail(e.target.email)}
-            value={name}
+            value={email}
             required
           />
         </div>
@@ -49,7 +49,7 @@ const Login = () => {
             className="border border-zinc-300 rounded w-full p-2 mt-1"
             type="password"
             onChange={(e) => setPassword(e.target.password)}
-            value={name}
+            value={password}
             required
           />
         </div>
