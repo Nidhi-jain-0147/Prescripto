@@ -36,7 +36,8 @@ const Login = () => {
           password,
           email,
         });
-        if (data) {
+
+        if (data.success) {
           localStorage.setItem("token", data.token);
           setToken(data.token);
         } else {
