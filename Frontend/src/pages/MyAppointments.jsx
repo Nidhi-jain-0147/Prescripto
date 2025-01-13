@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MyAppointments = () => {
-  const { backendUrl, token } = useContext(AppContext);
+  const { backendUrl, token, getDoctorsData } = useContext(AppContext);
   const [appointments, setAppointments] = useState([]);
+  const navigate = useNavigate();
   const months = [
     "",
     "Jan",
@@ -34,7 +36,6 @@ const MyAppointments = () => {
       const { data } = await axios.get(backendUrl + "/api/user/appointments", {
         headers: { token },
       });
-      console.log("data:", data);
 
       if (data.success) {
         setAppointments(data.appointments.reverse());
@@ -45,6 +46,30 @@ const MyAppointments = () => {
     }
   };
 
+  const cancelAppointment = async (appointmentId) => {
+    try {
+      console.log("appointmentId:", appointmentId);
+      const { data } = await axios.post(
+        backendUrl + "/api/user/cancle-appointment",
+        { appointmentId },
+        { headers: { token } }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        getUserAppointments();
+        getDoctorsData();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log("error:", error);
+      toast.error(error.message);
+    }
+  };
+
+  const handleNavigation = (docId) => {
+    navigate(`/appointment/${docId}`);
+  };
   useEffect(() => {
     if (token) {
       getUserAppointments();
@@ -62,8 +87,7 @@ const MyAppointments = () => {
             className="grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b"
             key={index}
           >
-            {console.log("item:", item)}
-            <div>
+            <div onClick={() => handleNavigation(item?.docData?._id)}>
               <img
                 className="w-32 bg-indigo-50"
                 src={item?.docData?.image}
@@ -88,12 +112,25 @@ const MyAppointments = () => {
             <div></div>
 
             <div className="flex flex-col gap-2 justify-end">
-              <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white tranisal duration-300">
-                Pay Online
-              </button>
-              <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-red-600 hover:text-white tranisal duration-300">
-                Cancel Appointment
-              </button>
+              {!item.cancelled && (
+                <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white tranisal duration-300">
+                  Pay Online
+                </button>
+              )}
+              {!item.cancelled && (
+                <button
+                  onClick={() => cancelAppointment(item._id)}
+                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-red-600 hover:text-white tranisal duration-300"
+                >
+                  Cancel Appointment
+                </button>
+              )}
+
+              {item.cancelled && (
+                <button className="sm:min-w-48 py-2 border border-red-500 rounded tex-red-500">
+                  Appointment cancelled
+                </button>
+              )}
             </div>
           </div>
         ))}
