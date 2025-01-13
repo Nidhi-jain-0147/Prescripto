@@ -197,4 +197,29 @@ const bookAppointment = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-export { registerUser, loginUser, getProfile, updateProfile, bookAppointment };
+
+//API to get user appointments for backend my-appointments page
+
+const listAppointment = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const appointments = await appointmentModel.find({ userId });
+
+    if (!appointments) {
+      return res.json({ success: false, message: "No Appointment" });
+    }
+
+    res.json({ success: true, appointments });
+  } catch (error) {
+    console.log("error:", error);
+    res.json({ success: false, message: error.message });
+  }
+};
+export {
+  registerUser,
+  loginUser,
+  getProfile,
+  updateProfile,
+  bookAppointment,
+  listAppointment,
+};

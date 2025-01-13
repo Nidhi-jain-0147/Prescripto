@@ -164,7 +164,6 @@ const Appointment = () => {
         timeSlots.push({ datetime: new Date(currentDate), time: false });
       }
 
-      console.log("timeSlots:", timeSlots);
       setDocSlots((prev) => [...prev, timeSlots]);
     }
   };
