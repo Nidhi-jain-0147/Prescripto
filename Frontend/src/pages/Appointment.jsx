@@ -275,47 +275,6 @@ const Appointment = () => {
               ))}
           </div>
 
-          {/* <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4 border">
-            {docSlots.length &&
-              docSlots[slotIndex].map((item, index) => (
-                <p
-                  onClick={() => setSlotTime(item?.time)}
-                  className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
-                    item.time === slotTime
-                      ? "bg-primary text-white"
-                      : "text-gray-400 border border-gray-300"
-                  }`}
-                  key={index}
-                >
-                  {item.time === false
-                    ? "No slot available"
-                    : item?.time?.toLowerCase()}
-                </p>
-              ))}
-          </div> */}
-
-          {/* <div
-            ref={containerRef}
-            className="flex items-center gap-3 w-full overflow-x-auto snap-x snap-mandatory mt-4 border"
-          >
-            {docSlots.length > 0 &&
-              docSlots[slotIndex].map((item, index) => (
-                <p
-                  onClick={() => setSlotTime(item?.time)}
-                  className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer snap-end ${
-                    item.time === slotTime
-                      ? "bg-primary text-white"
-                      : "text-gray-400 border border-gray-300"
-                  }`}
-                  key={index}
-                >
-                  {item.time === false
-                    ? "No slot available"
-                    : item?.time?.toLowerCase()}
-                </p>
-              ))}
-          </div> */}
-
           <SlotSelector
             docSlots={docSlots}
             slotIndex={slotIndex}
