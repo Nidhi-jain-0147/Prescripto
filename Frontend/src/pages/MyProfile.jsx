@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 const MyProfile = () => {
   const { backendUrl, token, userData, setUserData, loadUserProfileData } =
     useContext(AppContext);
-  console.log("userData:", userData);
 
   const [isEdit, setEdit] = useState(false);
   const [image, setImage] = useState(false);

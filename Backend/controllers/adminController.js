@@ -18,7 +18,6 @@ const addDoctor = async (req, res) => {
       address,
     } = req.body;
     const imageFile = req.file;
-    console.log("imageFile:", imageFile);
 
     //checking for all data to add doctor
     if (
@@ -107,7 +106,6 @@ const addDoctor = async (req, res) => {
 const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("email, password:", email, password);
 
     if (
       email === process.env.ADMIN_EMAIL &&

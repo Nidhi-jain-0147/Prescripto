@@ -23,7 +23,6 @@ const Appointment = () => {
 
   useEffect(() => {
     if (containerRef.current) {
-      console.log("containerRef.current:", containerRef.current);
       containerRef.current.scrollLeft = containerRef.current.scrollWidth;
     }
   }, [docSlots]);
@@ -35,10 +34,6 @@ const Appointment = () => {
     getAvailableSlots();
   }, [docInfo]);
 
-  useEffect(() => {
-    console.log({ docSlots });
-  }, [docSlots]);
-
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
@@ -48,69 +43,7 @@ const Appointment = () => {
     if (!docInfo || !docInfo.slots_booked) return true; // if  docinfo is null
     return !docInfo.slots_booked?.[slotDate]?.includes(slotTime);
   };
-  // const getAvailableSlots = async () => {
-  //   setDocSlots([]);
 
-  //   //getting current date
-
-  //   let today = new Date();
-  //   for (let i = 0; i < 7; i++) {
-  //     //getting date with index
-  //     let currentDate = new Date(today);
-  //     currentDate.setDate(today.getDate() + i);
-
-  //     // setting end time of the date with index
-  //     let endTime = new Date();
-  //     endTime.setDate(today.getDate() + i);
-  //     endTime.setHours(21, 0, 0, 0);
-
-  //     //setting hours
-
-  //     if (today.getDate() === currentDate.getDate()) {
-  //       currentDate.setHours(
-  //         currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10
-  //       );
-  //       currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0);
-  //     } else {
-  //       currentDate.setHours(10);
-  //       currentDate.setMinutes(0);
-  //     }
-
-  //     let timeSlots = [];
-  //     console.log("timeSlots:", timeSlots);
-  //     while (currentDate < endTime) {
-  //       let formattedTime = currentDate.toLocaleTimeString([], {
-  //         hour: "2-digit",
-  //         minute: "2-digit",
-  //       });
-
-  //       let day = currentDate.getDate();
-  //       let month = currentDate.getMonth() + 1;
-  //       let year = currentDate.getFullYear();
-
-  //       const slotDate = day + "_" + month + "_" + year;
-  //       const slotTime = formattedTime;
-
-  //       const isSlotAvailable = checkSlotAvailable(docInfo, slotDate, slotTime);
-  //       // add slot to array
-  //       if (isSlotAvailable) {
-  //         timeSlots.push({
-  //           datetime: new Date(currentDate),
-  //           time: formattedTime,
-  //         });
-  //       } else {
-  //         timeSlots.push({
-  //           datetime: new Date(currentDate),
-  //         });
-  //       }
-
-  //       // Increament time by 30 min
-  //       currentDate.setMinutes(currentDate.getMinutes() + 30);
-  //     }
-
-  //     setDocSlots((prev) => [...prev, timeSlots]);
-  //   }
-  // };
   const getAvailableSlots = async () => {
     setDocSlots([]);
 
@@ -185,7 +118,6 @@ const Appointment = () => {
       let year = date.getFullYear();
 
       const slotDate = day + "_" + month + "_" + year;
-      console.log("slotDate:", slotDate);
 
       const { data } = await axios.post(
         backendUrl + "/api/user/book-appointment",

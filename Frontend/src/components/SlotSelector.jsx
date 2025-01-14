@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Import arrow icons
 
 const SlotSelector = ({ docSlots, slotIndex, slotTime, setSlotTime }) => {
@@ -8,10 +8,6 @@ const SlotSelector = ({ docSlots, slotIndex, slotTime, setSlotTime }) => {
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollLeft = containerRef.current.scrollWidth;
-      console.log(
-        " containerRef.current.scrollLeft:",
-        containerRef.current.scrollLeft
-      );
     }
   }, [docSlots]);
 
