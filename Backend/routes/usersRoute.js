@@ -13,6 +13,7 @@ import {
 } from "../controllers/userController.js";
 import authUser from "../middlewares/authUser.js";
 import upload from "../middlewares/multer.js";
+import { doctorDashboard } from "../controllers/doctorController.js";
 
 const userRouter = express.Router();
 

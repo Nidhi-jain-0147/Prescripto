@@ -52,7 +52,7 @@ const Dashboard = () => {
             <img src={assets.list_icon} alt="" />
             <p className="font-semibold">Latest Bookings</p>
           </div>
-          {console.log("dashData:", dashData.latestAppointments)}
+
           <div className="pt-4 border border-t-0">
             {dashData?.latestAppointments?.map((item, index) => (
               <div
