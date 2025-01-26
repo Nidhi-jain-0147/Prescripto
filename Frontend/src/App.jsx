@@ -11,8 +11,12 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
+import { useContext } from "react";
+import { AppContext } from "./context/AppContext";
 
 const App = () => {
+  // const { isLoading } = useContext(AppContext);
+  // console.log("isLoading:", isLoading);
   return (
     <div className="mx-4 sm:mx-[10%]">
       <Navbar />
