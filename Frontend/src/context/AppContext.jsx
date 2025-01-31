@@ -20,12 +20,10 @@ const AppContextProvider = (props) => {
 
       if (data.success) {
         setDoctors(data.doctors);
-        setIsLoading(false);
       }
     } catch (error) {
       console.log("error:", error);
       toast.error(error.message);
-      setIsLoading(false);
     }
   };
 
@@ -57,6 +55,28 @@ const AppContextProvider = (props) => {
     }
   }, [token]);
 
+  useEffect(() => {
+    // request intercepter
+    axios.interceptors.request.use(
+      (config) => {
+        setIsLoading(true);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    //response intercepter
+    axios.interceptors.response.use(
+      (config) => {
+        setIsLoading(false);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+  }, []);
   const value = {
     doctors,
     getDoctorsData,

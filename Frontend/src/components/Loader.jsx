@@ -1,6 +1,6 @@
-const Loading = ({ message = "Loading..." }) => {
+const Loading = ({ message }) => {
   return (
-    <div role="status">
+    <div role="status" className="w-full bg-indigo-300">
       <svg
         aria-hidden="true"
         className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-300 fill-primary"
@@ -17,7 +17,7 @@ const Loading = ({ message = "Loading..." }) => {
           fill="currentFill"
         />
       </svg>
-      <span className="sr-only">{message}</span>
+      <span>{message}</span>
     </div>
   );
 };

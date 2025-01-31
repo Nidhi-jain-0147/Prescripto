@@ -11,30 +11,35 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "./context/AppContext";
+import axios from "axios";
+import TopLoadingBar from "./components/TopLoadingBar";
 
 const App = () => {
-  // const { isLoading } = useContext(AppContext);
-  // console.log("isLoading:", isLoading);
+  const { isLoading, setIsLoading } = useContext(AppContext);
+
   return (
-    <div className="mx-4 sm:mx-[10%]">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/doctors" element={<Doctors />}></Route>
-        <Route path="/doctors/:speciality" element={<Doctors />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/my-profile" element={<MyProfile />}></Route>
-        <Route path="/my-appointments" element={<MyAppointments />}></Route>
-        <Route path="/appointment/:docId" element={<Appointment />}></Route>
-        <Route path="*" element={<div>Not found</div>} />
-      </Routes>
-      <Footer />
-      <ToastContainer />
-    </div>
+    <>
+      {isLoading && <TopLoadingBar message="Loading ..." />}
+      <div className="mx-4 sm:mx-[10%]">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/doctors" element={<Doctors />}></Route>
+          <Route path="/doctors/:speciality" element={<Doctors />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/my-profile" element={<MyProfile />}></Route>
+          <Route path="/my-appointments" element={<MyAppointments />}></Route>
+          <Route path="/appointment/:docId" element={<Appointment />}></Route>
+          <Route path="*" element={<div>Not found</div>} />
+        </Routes>
+        <Footer />
+        <ToastContainer />
+      </div>
+    </>
   );
 };
 

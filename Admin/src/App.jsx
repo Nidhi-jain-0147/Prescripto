@@ -16,33 +16,42 @@ import { DoctorContext } from "./context/DontorContext";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorAppointmets from "./pages/Doctor/DoctorAppointments";
 import DoctorProfile from "./pages/Doctor/DoctorProfile";
+import TopLoadingBar from "./components/TopLoadingBar";
 const App = () => {
   const { aToken } = useContext(AdminContext);
   const { dToken } = useContext(DoctorContext);
+  const { isLoading } = useContext(AppContext);
   return aToken || dToken ? (
-    <div className="bg-[#F8F9FD]">
-      <ToastContainer />
-      <Navbar />
-      <div className="flex items-start">
-        <Sidebar />
+    <>
+      {isLoading && <TopLoadingBar />}
+      <div className="bg-[#F8F9FD]">
+        <ToastContainer />
+        <Navbar />
+        <div className="flex items-start">
+          <Sidebar />
 
-        <Routes>
-          {/* Admin Routes */}
-          <Route path="/" element={<></>} />
-          <Route path="/admin-dashboard" element={<DashBoard />} />
-          <Route path="/all-appointments" element={<AllAppointments />} />
-          <Route path="/add-doctor" element={<AddDoctor />} />
-          <Route path="/doctor-list" element={<DoctorsList />} />
+          <Routes>
+            {/* Admin Routes */}
+            <Route path="/" element={<></>} />
+            <Route path="/admin-dashboard" element={<DashBoard />} />
+            <Route path="/all-appointments" element={<AllAppointments />} />
+            <Route path="/add-doctor" element={<AddDoctor />} />
+            <Route path="/doctor-list" element={<DoctorsList />} />
 
-          {/* Doctor Routes */}
-          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-          <Route path="/doctor-appointments" element={<DoctorAppointmets />} />
-          <Route path="/doctor-profile" element={<DoctorProfile />} />
-        </Routes>
+            {/* Doctor Routes */}
+            <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+            <Route
+              path="/doctor-appointments"
+              element={<DoctorAppointmets />}
+            />
+            <Route path="/doctor-profile" element={<DoctorProfile />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </>
   ) : (
     <div>
+      {isLoading && <TopLoadingBar />}
       <Login />
       <ToastContainer />
     </div>
