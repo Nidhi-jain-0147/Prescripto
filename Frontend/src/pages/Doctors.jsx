@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import Loading from "../components/Loader";
 
 const Doctors = () => {
   const { speciality } = useParams();
-  const { doctors, isLoading } = useContext(AppContext);
+  const { doctors } = useContext(AppContext);
   const [filterDoc, setFilterDoc] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
@@ -117,7 +116,6 @@ const Doctors = () => {
           </p>
         </div>
 
-        {isLoading && <Loading />}
         <div className="w-full grid grid-cols-auto gap-4 gap-y-6">
           {filterDoc.map((item, index) => (
             <div
