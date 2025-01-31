@@ -1,8 +1,9 @@
 import { assets } from "../assets/assets";
+import MoveUpOnRender from "../components/MoveUpOnRender";
 
 const Contact = () => {
   return (
-    <div>
+    <MoveUpOnRender id="contact">
       <div className="text-2xl text-center pt-10 text-gray-500">
         <p>
           CONTACT <span className="text-gray-700 font-semibold">US</span>
@@ -34,7 +35,7 @@ const Contact = () => {
           </button>
         </div>
       </div>
-    </div>
+    </MoveUpOnRender>
   );
 };
 

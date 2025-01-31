@@ -7,6 +7,7 @@ export const AppContext = createContext();
 const AppContextProvider = (props) => {
   const currency = "$";
   const [isLoading, setIsLoading] = useState(false);
+  console.log("isLoading:", isLoading);
   const calculateAge = (dob) => {
     const today = new Date();
     const birthDate = new Date(dob);
