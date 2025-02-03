@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "https://project.prescripto.manthangaikwad.online/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
