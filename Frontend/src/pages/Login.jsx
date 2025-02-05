@@ -23,9 +23,11 @@ const Login = () => {
           password,
           email,
         });
-        if (data) {
+        console.log("data:", data);
+        if (data.success) {
           localStorage.setItem("token", data.token);
           setToken(data.token);
+          toast.success(data.message);
         } else {
           toast.error(data.message);
         }
@@ -43,6 +45,7 @@ const Login = () => {
         }
       }
     } catch (error) {
+      console.log("error:", error);
       toast.error(error.message);
     }
   };

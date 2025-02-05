@@ -8,11 +8,50 @@ const AppContextProvider = (props) => {
   const currencySymbol = "$";
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(false);
+
   const [doctors, setDoctors] = useState([]);
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
   const [userData, setUserData] = useState(false);
+
+  useEffect(() => {
+    // request intercepter
+    console.log("inter");
+    axios.interceptors.request.use(
+      (config) => {
+        setIsLoading(true);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    //response intercepter
+    axios.interceptors.response.use(
+      (config) => {
+        setIsLoading(false);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+  }, []);
+  useEffect(() => {
+    console.log({ isLoading });
+  }, [isLoading]);
+  useEffect(() => {
+    getDoctorsData();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      loadUserProfileData();
+    } else {
+      setUserData(false);
+    }
+  }, [token]);
   const getDoctorsData = async () => {
     try {
       const { data } = await axios.get(backendUrl + "/api/doctor/list");
@@ -42,40 +81,6 @@ const AppContextProvider = (props) => {
       toast.error(error.message);
     }
   };
-  useEffect(() => {
-    getDoctorsData();
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      loadUserProfileData();
-    } else {
-      setUserData(false);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    // request intercepter
-    axios.interceptors.request.use(
-      (config) => {
-        setIsLoading(true);
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-    //response intercepter
-    axios.interceptors.response.use(
-      (config) => {
-        setIsLoading(false);
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-  }, []);
   const value = {
     doctors,
     getDoctorsData,
